@@ -1,23 +1,33 @@
 <h1>Añada un producto</h1>
 <div mat-dialog-content>
     <mat-form-field appearance="outline">
-        <mat-label>Producto</mat-label>
+        <mat-label>Nombre del producto</mat-label>
         <input matInput placeholder="Ex. Nougat">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
     </mat-form-field>
+
     <mat-form-field appearance="outline">
-        <mat-label>Producto</mat-label>
-        <input matInput placeholder="Ex. Nougat">
+        <mat-label>Categoría</mat-label>
+        <mat-select placeholder="Categoria">
+            <mat-option value="Electrónica">Electrónica</mat-option>
+            <mat-option value="Hogar">Hogar</mat-option>
+            <mat-option value="Ocio">Ocio</mat-option>
+        </mat-select>
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
     </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Producto</mat-label>
-        <input matInput placeholder="Ex. Nougat">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Fecha</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Producto</mat-label>
-        <input matInput placeholder="Ex. Nougat">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    </mat-form-field>
+
+    <mat-label id="example-radio-group-label"><h1>Estado</h1></mat-label>
+    <mat-radio-group  class="example-radio-group">
+        <mat-radio-button class="example-radio-button" *ngFor="let estado of estadoList" [value]="Nuevo" aria-label="Select an option">
+            {{estado}}
+        </mat-radio-button>
+    </mat-radio-group>
 </div>
