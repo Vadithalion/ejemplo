@@ -1,0 +1,23 @@
+{
+  "productList": [
+    {
+      "productName": "fasd",
+      "category": "Electrónica",
+      "state": "Nuevo",
+      "price": 234,
+      "date": "2022-05-05T22:00:00.000Z",
+      "comments": "asfdasdf",
+      "id": 1
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

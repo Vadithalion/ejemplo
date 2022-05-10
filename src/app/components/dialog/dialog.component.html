@@ -1,33 +1,49 @@
 <h1>Añada un producto</h1>
 <div mat-dialog-content>
-    <mat-form-field appearance="outline">
-        <mat-label>Nombre del producto</mat-label>
-        <input matInput placeholder="Ex. Nougat">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-        <mat-label>Categoría</mat-label>
-        <mat-select placeholder="Categoria">
-            <mat-option value="Electrónica">Electrónica</mat-option>
-            <mat-option value="Hogar">Hogar</mat-option>
-            <mat-option value="Ocio">Ocio</mat-option>
-        </mat-select>
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Fecha</mat-label>
-        <input matInput [matDatepicker]="picker">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-
-    <mat-label id="example-radio-group-label"><h1>Estado</h1></mat-label>
-    <mat-radio-group  class="example-radio-group">
-        <mat-radio-button class="example-radio-button" *ngFor="let estado of estadoList" [value]="Nuevo" aria-label="Select an option">
-            {{estado}}
-        </mat-radio-button>
-    </mat-radio-group>
+    <form [formGroup]="productForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre del producto</mat-label>
+            <input formControlName="productName" matInput placeholder="Introduce Nombre">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Categoría</mat-label>
+            <mat-select formControlName="category" placeholder="Categoria">
+                <mat-option value="Electrónica">Electrónica</mat-option>
+                <mat-option value="Hogar">Hogar</mat-option>
+                <mat-option value="Ocio">Ocio</mat-option>
+            </mat-select>
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha</mat-label>
+            <input formControlName="date" matInput [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    
+        <label><h1>Estado</h1></label>
+        <mat-radio-group formControlName="state" class="example-radio-group">
+            <mat-radio-button class="example-radio-button" *ngFor="let estado of estadoList" [value]="estado">
+                {{estado}}
+            </mat-radio-button>
+        </mat-radio-group>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Precio</mat-label>
+            <input formControlName="price" matInput type="number" placeholder="Introduce Precio">
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Comentarios</mat-label>
+            <textarea formControlName="comments" matInput placeholder="Introduce Precio"></textarea>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Cerrar</button>
+    <button mat-raised-button color="primary" mat-dialog-close style="margin-left: 8px;" (click)="addProduct()">Guardar</button>
 </div>
