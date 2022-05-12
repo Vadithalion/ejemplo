@@ -9,7 +9,6 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   postProduct (data: any) {
-    console.log('iñi pasa por aqui?');
     return this.http.post<any>("http://localhost:3000/productList/", data);
 }
 

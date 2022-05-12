@@ -8,6 +8,15 @@
       "date": "2022-05-05T22:00:00.000Z",
       "comments": "asfdasdf",
       "id": 1
+    },
+    {
+      "productName": "asfdd",
+      "category": "Electrónica",
+      "state": "Nuevo",
+      "price": 3421,
+      "date": "2022-05-12T22:00:00.000Z",
+      "comments": "agsddgasagsfdf",
+      "id": 2
     }
   ],
   "comments": [
