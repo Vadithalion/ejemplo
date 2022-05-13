@@ -31,9 +31,10 @@ export class DialogComponent implements OnInit {
       date: new FormControl('', Validators.required),
       comments: new FormControl('', Validators.required),
     });
+
     if (this.editData) {
       this.actionBtn = 'Update';
-      this.productForm.controls['productname'].setValue(this.editData.productName);
+      this.productForm.controls['productName'].setValue(this.editData.productName);
       this.productForm.controls['category'].setValue(this.editData.category);
       this.productForm.controls['state'].setValue(this.editData.state);
       this.productForm.controls['price'].setValue(this.editData.price);
