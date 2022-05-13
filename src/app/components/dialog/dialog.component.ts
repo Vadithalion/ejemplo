@@ -44,18 +44,34 @@ export class DialogComponent implements OnInit {
   }
 
   public addProduct (){
-    if (this.productForm.valid){
-      this.api.postProduct(this.productForm.value).subscribe({
-        next:(res)=>{
-          alert("producto añadido correctamente");
-          this.productForm.reset();
-          // this.dialogRef.close('Guardar');
-        },
-        error: ()=>{
-          alert("error al añadir el producto, reviselo e introduzcalo de nuevo");
-        }
-      });
+    if (!this.editData) {
+      if (this.productForm.valid){
+        this.api.postProduct(this.productForm.value).subscribe({
+          next:(res)=>{
+            alert("producto añadido correctamente");
+            this.productForm.reset();
+            // this.dialogRef.close('Guardar');
+          },
+          error: ()=>{
+            alert("error al añadir el producto, reviselo e introduzcalo de nuevo");
+          }
+        });
+      }
+    } else {
+      this.updateProduct();
     }
+  }
+  updateProduct () {
+    this.api.updateProduct(this.productForm.value, this.editData.id).subscribe({
+      next:(res)=>{
+        alert("producto actualizado correctamente");
+        this.productForm.reset();
+        this.dialogRef.close('update');
+      },
+      error:()=>{
+        alert("ha ocurrido un error al actualizar el producto");
+      }
+    })
   }
 
 }
