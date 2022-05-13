@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, OnInit, OnChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { ApiService } from './services/api.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { RouterLinkWithHref } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class AppComponent implements OnInit {
   title = 'prueba';
-  displayedColumns: string[] = ['productName', 'category', 'state', 'price', 'date', 'comments'];
+  displayedColumns: string[] = ['productName', 'category', 'state', 'price', 'date', 'comments', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -31,7 +32,7 @@ export class AppComponent implements OnInit {
   }
 
   getAllProducts () {
-    this.api.getProduct().subscribe({
+    this.api.getProducts().subscribe({
       next:(res)=>{
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
@@ -43,6 +44,12 @@ export class AppComponent implements OnInit {
     })
   }
 
+  editProduct (row: any) {
+    this.dialog.open(DialogComponent,{
+      data: row
+    })
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -50,5 +57,9 @@ export class AppComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  ngOnchanges () {
+    this.getAllProducts();
   }
 }

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -12,8 +12,15 @@ export class DialogComponent implements OnInit {
 
   public estadoList = ["Nuevo", "Segunda mano"];
   public productForm! : FormGroup;
+  public actionBtn: string = 'Guardar';
 
-  constructor(private formBuilder: FormBuilder, private dialogRef: MatDialogRef<DialogComponent>, private api: ApiService) { }
+  constructor(private formBuilder: FormBuilder,
+    private api: ApiService,
+    @Inject(MAT_DIALOG_DATA) public editData: any,
+    private dialogRef: MatDialogRef<DialogComponent>,
+    ) {
+
+    }
 
   ngOnInit(): void {
     this.productForm =  this.formBuilder.group({
@@ -24,6 +31,15 @@ export class DialogComponent implements OnInit {
       date: new FormControl('', Validators.required),
       comments: new FormControl('', Validators.required),
     });
+    if (this.editData) {
+      this.actionBtn = 'Update';
+      this.productForm.controls['productname'].setValue(this.editData.productName);
+      this.productForm.controls['category'].setValue(this.editData.category);
+      this.productForm.controls['state'].setValue(this.editData.state);
+      this.productForm.controls['price'].setValue(this.editData.price);
+      this.productForm.controls['date'].setValue(this.editData.date);
+      this.productForm.controls['comments'].setValue(this.editData.comments);
+    }
   }
 
   public addProduct (){
