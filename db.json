@@ -1,24 +1,6 @@
 {
   "productList": [
     {
-      "productName": "fasd",
-      "category": "Electrónica",
-      "state": "Nuevo",
-      "price": 1,
-      "date": "2022-05-05T22:00:00.000Z",
-      "comments": "asfdasdf",
-      "id": 1
-    },
-    {
-      "productName": "asfdd",
-      "category": "Electrónica",
-      "state": "Nuevo",
-      "price": 3421,
-      "date": "2022-05-12T22:00:00.000Z",
-      "comments": "agsddgasagsfdf",
-      "id": 2
-    },
-    {
       "productName": "dhsfgt",
       "category": "Hogar",
       "state": "Segunda mano",
@@ -35,6 +17,15 @@
       "date": "2022-05-16T22:00:00.000Z",
       "comments": "sgdfsfgd",
       "id": 4
+    },
+    {
+      "productName": "kjljkkjghjkkj",
+      "category": "Hogar",
+      "state": "Nuevo",
+      "price": 325,
+      "date": "2022-05-15T22:00:00.000Z",
+      "comments": "fgsrtyfghhcgdrtf",
+      "id": 5
     }
   ],
   "comments": [

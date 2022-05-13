@@ -28,7 +28,11 @@ export class AppComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(DialogComponent);
+    this.dialog.open(DialogComponent).afterClosed().subscribe(val=>{
+      if (val === 'save'){
+        this.getAllProducts();
+      }
+    });
   }
 
   getAllProducts () {
@@ -47,6 +51,23 @@ export class AppComponent implements OnInit {
   editProduct (row: any) {
     this.dialog.open(DialogComponent,{
       data: row
+    }).afterClosed().subscribe(val=>{
+      console.log(val);
+      if (val === 'update'){
+        this.getAllProducts();
+      }
+    });
+  }
+
+  deleteProduct(id: number) {
+    this.api.deleteProduct(id).subscribe({
+      next:(res)=>{
+        alert("producto borrado correctamente");
+        this.getAllProducts();
+      },
+      error:()=>{
+        alert("error al borrar el producto");
+      }
     })
   }
 
